@@ -47,17 +47,20 @@
 
                 var $parentLi = $(this).closest('li');
 
-                if ($(this).hasClass('expanded')) {
-                    $(this).removeClass('expanded').html(options.expandIcon);
-                    $parentLi.find('>ul').slideUp(options.animSpeed, options.easingEffect);
-                } else {
-                    $(this).addClass('expanded').html(options.collapseIcon);
-                    $parentLi.find('>ul').slideDown(options.animSpeed, options.easingEffect);
+                if ($menu.hasClass('collapsed')) {
+                    if ($(this).hasClass('expanded')) {
+                        $(this).removeClass('expanded').html(options.expandIcon);
+                        $parentLi.removeClass('open').find('>ul').slideUp(options.animSpeed, options.easingEffect);
+                    } else {
+                        $(this).addClass('expanded').html(options.collapseIcon);
+                        $parentLi.addClass('open').find('>ul').slideDown(options.animSpeed, options.easingEffect);
+                    }
                 }
             });
 
             $menuCollapser.on('click', '.collapse-button', function (e) {
                 e.preventDefault();
+                $menuCollapser.toggleClass('open');
                 $menu.slideToggle(options.animSpeed, options.easingEffect);
             });
 

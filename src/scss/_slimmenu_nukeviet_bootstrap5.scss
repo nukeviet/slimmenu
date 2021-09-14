@@ -1,0 +1,211 @@
+
+.menu-collapser {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    padding: 0 .5rem;
+    font-size: 1rem;
+    line-height: 3rem;
+    background-color: $gray-300;
+    border: 1px solid $gray-400;
+    box-sizing: border-box;
+}
+
+.collapse-button {
+    position: absolute;
+    right: .5rem;
+    top: 50%;
+    width: 40px;
+    padding: .5rem .625rem;
+    color: $white;
+    font-size: 1rem;
+    text-align: center;
+    background-color: $gray-600;
+    border-radius: $border-radius-sm;
+    cursor: pointer;
+    transform: translate(0, -50%);
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus,
+    .open & {
+        color: color-contrast($main-color);
+        background-color: $main-color;
+    }
+
+    .icon-bar {
+        display: block;
+        height: 2px;
+        width: 18px;
+        margin: 2px 0;
+        background-color: $gray-100;
+        border-radius: 1px;
+    }
+}
+
+ul.slimmenu {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $site-bg;
+    list-style-type: none;
+
+    &:before,
+    &:after {
+        content: '';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    li {
+        position: relative;
+        display: block;
+        width: 100%;
+        background-color: $gray-100;
+        box-sizing: border-box;
+        transition: all 0.5s ease-out;
+        border-top: 1px solid rgba(0, 0, 0, 0.075);
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            min-width: 250px;
+        }
+
+        >ul {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            z-index: 999;
+            display: none;
+            width: 100%;
+
+            >li ul {
+                position: absolute;
+                left: 100%;
+                top: 0;
+                z-index: 999;
+                display: none;
+                width: 100%;
+            }
+        }
+
+        a {
+            display: block;
+            padding: .75rem 1rem;
+            color: $site-color;
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        &:hover {
+            background-color: $main-color;
+
+            & > a,
+            & > .sub-toggle {
+                color: color-contrast($main-color);
+            }
+        }
+
+        &.has-submenu > a {
+            padding-right: 2rem;
+        }
+    }
+
+    .sub-toggle {
+        background-color: transparent;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        width: 2rem;
+        height: 100%;
+        padding-left: .5rem;
+        cursor: pointer;
+
+        &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            margin-right: -0.25em;
+            vertical-align: middle;
+        }
+
+        >i {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    &.collapsed {
+        li {
+            box-sizing: border-box;
+
+            >ul {
+                position: static;
+                display: none;
+            }
+
+            li:not(:hover) {
+                background-color: $site-bg;
+            }
+
+            a {
+                display: block;
+            }
+
+            &.open:not(:hover) {
+                background-color: $main-color;
+
+                & > a,
+                & > .sub-toggle {
+                    color: color-contrast($main-color);
+                }
+
+                & > a {
+                    padding-right: 2.5rem;
+                }
+            }
+        }
+
+        li li li {
+            padding-left: 1rem;
+        }
+
+        .sub-toggle {
+            width: 2.5rem;
+            height: calc(3rem + 1px);
+            padding-left: 0;
+            text-align: center;
+
+            &:hover {
+                background-color: rgba(0,0,0,0.1);
+            }
+        }
+    }
+
+    &:not(.collapsed) {
+        ul {
+            border-left: 1px solid rgba(0, 0, 0, 0.075);
+            border-right: 1px solid rgba(0, 0, 0, 0.075);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+            box-shadow: $box-shadow-sm;
+        }
+
+        & > li {
+            display: inline-block;
+            width: auto;
+            float:left;
+            border-top: 0;
+    
+            &:not(:hover) {
+                background-color: transparent;
+            }
+        }
+    }
+}
