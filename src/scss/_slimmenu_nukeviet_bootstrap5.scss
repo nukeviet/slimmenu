@@ -86,8 +86,8 @@ ul.slimmenu {
 
             >li ul {
                 position: absolute;
-                left: 100%;
-                top: 0;
+                left: calc(100% - 1px);
+                top: -1px;
                 z-index: 999;
                 display: none;
                 width: 100%;
